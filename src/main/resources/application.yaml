@@ -4,9 +4,9 @@ spring:
       ddl-auto: validate
     show-sql: true
   datasource:
-    url: jdbc:postgresql://localhost:5432/eshop
-    username: eshopAdmin
-    password: 358000
+    url: jdbc:postgresql://dpg-cp2g71g21fec73cqqur0-a.frankfurt-postgres.render.com:5432/eshop_dhzn
+    username: eshopadmin
+    password: HMMrv2q7GOi9uVN6b6OpzVJo8W5Awtu4
   flyway:
     baseline-on-migrate: true
   mvc:
