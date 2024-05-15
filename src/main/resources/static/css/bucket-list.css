@@ -1,0 +1,61 @@
+/* Стили для таблицы */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* Стили для заголовков столбцов */
+.table th {
+    background-color: #f2f2f2;
+    border: 1px solid #dddddd;
+    padding: 8px;
+    text-align: left;
+}
+
+/* Стили для ячеек */
+.table td {
+    border: 1px solid #dddddd;
+    padding: 8px;
+}
+
+/* Стили для изображений */
+.table img {
+    width: 100px; /* Задаем фиксированную ширину изображения */
+    height: auto; /* Поддерживаем пропорции */
+    display: block; /* Убираем отступы и прочие маргины */
+    margin: auto; /* Выравниваем изображение по центру */
+}
+
+/* Стили для кнопок удаления */
+.remove-button {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.approve-button {
+    background-color: green;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+
+.remove-button:hover {
+    background-color: #d32f2f;
+}

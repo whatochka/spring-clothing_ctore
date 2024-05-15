@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Add user</title>
+</head>
+<body>
+<form method="post" th:action="@{/products/new}" th:object="${product}">
+    <table>
+        <tr>
+            <td>Name</td>
+            <td><label>
+                <input th:field="*{name}" type="text">
+            </label></td>
+        </tr>
+        <tr>
+            <td>Url</td>
+            <td><label>
+                <input th:field="*{url_link}" type="text">
+            </label></td>
+        </tr>
+        <tr>
+            <td>Manufacturer</td>
+            <td><label>
+                <input th:field="*{manufacturer}" type="text">
+            </label></td>
+        </tr>
+        <tr>
+            <td>Category</td>
+            <td><label>
+                <input th:field="*{category}" type="text">
+            </label></td>
+        </tr>
+        <tr>
+            <td>Price</td>
+            <td><label>
+                <input th:field="*{price}" type="number">
+            </label></td>
+        </tr>
+    </table>
+    <button type="submit">Save</button>
+</form>
+</body>
+</html>

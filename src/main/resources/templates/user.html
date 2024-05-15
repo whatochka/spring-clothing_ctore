@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <link rel="stylesheet" href="../static/css/header.css">
+  <meta charset="UTF-8">
+  <title>Авторизация</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: Arial, sans-serif;
+      background-image: url("https://bogatyr.club/uploads/posts/2023-01/thumbs/1674826162_bogatyr-club-p-fon-dlya-internet-magazina-fon-vkontakte-3.jpg");
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #f5f5f5;
+      height: 100%;
+    }
+
+    form {
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+      width: 300px;
+    }
+
+    form table {
+      width: 100%;
+    }
+
+    form table td {
+      padding: 10px 0;
+    }
+
+    form label {
+      display: block;
+      font-weight: bold;
+    }
+
+    form input[type="text"],
+    form input[type="password"],
+    form input[type="email"]{
+      width: calc(100% - 5px);
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    form button[type="submit"] {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      background-color: #007bff;
+      color: #fff;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    form button[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div>
+    <h1>Clothing store</h1>
+  </div>
+  <div class="menu">
+    <div>
+      <a th:href="@{/}">Главная</a>
+      <a th:href="@{/products}">Каталог</a>
+      <a th:href="@{/bucket}">Корзина</a>
+      <a sec:authorize="hasAnyAuthority('ADMIN')" th:href="@{/user/list}">Пользователи</a>
+    </div>
+  </div>
+  <div class="login-logout">
+    <div sec:authorize="isAuthenticated()">
+      Привет, <span sec:authentication="name"></span>!
+    </div>
+    <div>
+      <a th:href="@{/login}" sec:authorize="!isAuthenticated()">Войти</a>
+      <a th:href="@{/user/new}" sec:authorize="!isAuthenticated()">Регистрация</a>
+    </div>
+    <div>
+      <a th:href="@{/logout}" sec:authorize="isAuthenticated()">Выйти</a>
+    </div>
+  </div>
+</header>
+
+<form th:action="@{/user/new}" th:object="${user}" method="post">
+  <table>
+    <tr>
+      <td>Логин</td>
+      <td><label>
+        <input type="text" th:field="*{username}">
+      </label></td>
+    </tr>
+    <tr>
+      <td>Пароль</td>
+      <td><label>
+        <input type="password" th:field="*{password}">
+      </label></td>
+    </tr>
+    <tr>
+      <td>Повторите пароль</td>
+      <td><label>
+        <input type="password" th:field="*{matchingPassword}">
+      </label></td>
+    </tr>
+    <tr>
+      <td>Email</td>
+      <td><label>
+        <input type="email" th:field="*{email}">
+      </label></td>
+    </tr>
+  </table>
+  <button type="submit">Зарегистрироваться</button>
+</form>
+</body>
+</html>

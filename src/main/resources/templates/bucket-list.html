@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Корзина</title>
+  <link rel="stylesheet" href="../static/css/header.css">
+  <link rel="stylesheet" href="../static/css/bucket-list.css">
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/1966/1966142.png">
+</head>
+<body>
+
+<header>
+  <div>
+    <h1>Clothing store</h1>
+  </div>
+  <div class="menu">
+    <div>
+      <a th:href="@{/}">Главная</a>
+      <a th:href="@{/products}">Каталог</a>
+      <a th:href="@{/bucket}">Корзина</a>
+      <a sec:authorize="hasAnyAuthority('ADMIN')" th:href="@{/user/list}">Пользователи</a>
+    </div>
+  </div>
+  <div class="login-logout">
+    <div sec:authorize="isAuthenticated()">
+      Привет, <span sec:authentication="name"></span>!
+    </div>
+    <div>
+      <a th:href="@{/login}" sec:authorize="!isAuthenticated()">Войти</a>
+      <a th:href="@{/user/new}" sec:authorize="!isAuthenticated()">Регистрация</a>
+    </div>
+    <div>
+      <a th:href="@{/logout}" sec:authorize="isAuthenticated()">Выйти</a>
+    </div>
+  </div>
+</header>
+
+<table class="table" style="margin-top: 116px; padding: 20px;">
+  <tr>
+    <th></th>
+    <th>Название</th>
+    <th>Цена</th>
+    <th>Количество</th>
+  </tr>
+  <tr th:each="item : ${bucket}">
+    <td>
+      <img alt="Product Image" th:src="${item.product.url_link}">
+    </td>
+    <td th:text="${item.product.name}" style="text-align: center"></td>
+    <td th:text="${item.product.price} + ' ' + руб." style="text-align: center"></td>
+    <td th:text="${item.amount}" style="text-align: center"></td>
+    <td>
+      <form th:action="@{/bucket/delete/{itemId}(itemId=${item.id})}" method="post" style="display: flex; justify-content: center">
+        <button type="submit" class="remove-button">Remove</button>
+      </form>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="5" style="text-align: center;">
+      <form action="/checkout" method="post">
+        <button type="submit" class="approve-button">Оплатить</button>
+      </form>
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>

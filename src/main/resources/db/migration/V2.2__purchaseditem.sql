@@ -1,0 +1,1 @@
+ALTER TABLE purchased_items ADD COLUMN amount INT;

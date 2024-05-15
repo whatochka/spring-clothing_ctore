@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Clothing store</title>
+    <link rel="stylesheet" href="../static/css/header.css">
+    <link rel="stylesheet" href="../static/css/index.css">
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/1966/1966142.png">
+</head>
+<body>
+
+<header>
+    <div>
+        <h1>Clothing store</h1>
+    </div>
+    <div class="menu">
+        <div>
+            <a th:href="@{/}">Главная</a>
+            <a th:href="@{/products}">Каталог</a>
+            <a th:href="@{/bucket}">Корзина</a>
+            <a sec:authorize="hasAnyAuthority('ADMIN')" th:href="@{/user/list}">Пользователи</a>
+        </div>
+    </div>
+    <div class="login-logout">
+        <div sec:authorize="isAuthenticated()">
+            Привет, <span sec:authentication="name"></span>!
+        </div>
+        <div>
+            <a th:href="@{/login}" sec:authorize="!isAuthenticated()">Войти</a>
+            <a th:href="@{/user/new}" sec:authorize="!isAuthenticated()">Регистрация</a>
+        </div>
+        <div>
+            <a th:href="@{/logout}" sec:authorize="isAuthenticated()">Выйти</a>
+        </div>
+    </div>
+</header>
+
+<div style="margin-top: 100px; padding: 20px;">
+    <div class="cards-container">
+        <div class="card card1">
+            <h2>О нас</h2>
+            <a th:href="@{/products}">Добро пожаловать в "Clothing Store" - ваш надежный партнер в мире моды и стиля! Мы предлагаем широкий ассортимент стильной и качественной одежды для всех возрастов, вкусов и предпочтений.
+
+                В "Clothing Store" мы стремимся помочь каждому нашему клиенту выразить свою уникальность через моду и стиль. Наш ассортимент включает в себя все, от повседневной одежды до официальных и вечерних нарядов, чтобы вы могли найти идеальное решение для любого случая.</a>
+        </div>
+        <div class="card card2">
+            <a th:href="@{/products}">Мы гордимся тем, что предлагаем только товары от лучших мировых брендов и дизайнеров, обеспечивая высокое качество и стильные тренды. Наша команда профессионалов всегда готова помочь вам с выбором и предоставить лучший сервис.</a>
+        </div>
+        <div class="card card3">
+            <a th:href="@{/products}">В "Clothing Store" мы верим, что каждый человек заслуживает выглядеть и чувствовать себя наилучшим образом, и мы готовы помочь вам в этом. Присоединяйтесь к нам сегодня и откройте для себя мир стиля и моды вместе с "Clothing Store"!</a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
